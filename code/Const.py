@@ -5,8 +5,8 @@ COLOR_YELLOW = (255, 255, 0)
 
 # Definição perfil
 MENU_OPTION = ('NEW GAME 1P',
-               'NEW GAME 2P',
-               'NEW GAME 2P',
+               'LEVEL 1',
+               'LEVEL 2',
                'SCORE',
                'EXIT')
 # Tamanhos
