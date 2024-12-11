@@ -31,8 +31,6 @@ class Menu:
                 else:
                     self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 170 + 25 * i))
 
-            pygame.display.flip()
-
             # Check for all events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -57,6 +55,8 @@ class Menu:
 
                     if event.key == pygame.K_RETURN:  # ENTER
                         return MENU_OPTION[menu_option]
+
+            pygame.display.flip()
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
