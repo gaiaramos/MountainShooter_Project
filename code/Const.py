@@ -7,8 +7,10 @@ COLOR_YELLOW = (255, 255, 0)
 MENU_OPTION = ('NEW GAME 1P',
                'LEVEL 1',
                'LEVEL 2',
+               'LEVEL 3',
                'SCORE',
                'EXIT')
 # Tamanhos
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
+
