@@ -1,4 +1,6 @@
 from code.game import Game
 
-game = Game()
-game.run()
+class main:
+
+    game = Game()
+    game.run()
