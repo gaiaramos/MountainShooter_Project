@@ -37,6 +37,22 @@ PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
 PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
+#Health
+ENTITY_HEALTH = {
+    'LevelBg0' : 999,
+    'LevelBg1': 999,
+    'LevelBg2': 999,
+    'LevelBg3': 999,
+    'LevelBg4': 999,
+    'LevelBg5': 999,
+    'LevelBg6': 999,
+    'Player1': 300,
+    'Player2': 300,
+    'Enemy1': 50,
+    'Enemy2': 60,
+
+}
+
 # Definição perfil
 MENU_OPTION = ('NEW GAME',
                'LEVEL 1',
