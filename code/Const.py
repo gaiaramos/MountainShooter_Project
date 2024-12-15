@@ -17,9 +17,9 @@ MENU_OPTION = ('NEW GAME',
                'EXIT')
 
 # Eventos
-EVENT_ENEMY = pygame.USEREVENT + 1
-EVENT_ENEMY3 = pygame.USEREVENT + 2
-EVENT_ENEMYP2 = pygame.USEREVENT + 3
+EVENT_ENEMY = pygame.USEREVENT + 1 # Evento só com Enemy 1 e 2
+EVENT_ENEMY3 = pygame.USEREVENT + 2 # Evento só com Enemy 3
+EVENT_ENEMYP2 = pygame.USEREVENT + 3 # Evento com os 3 enemies
 EVENT_TIMEOUT = pygame.USEREVENT + 4
 
 ENTITY_SPEED = {
