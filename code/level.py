@@ -20,21 +20,40 @@ from code.enemy import Enemy
 class Level:
     def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
         self.timeout = TIMEOUT_LEVEL
+        if name == 'Level3':
+            self.timeout *= 2  # Multiplica o TIMEOUT por 2. 40s
         self.window = window
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
-        player = EntityFactory.get_entity('Player1') # level 1
+        player = EntityFactory.get_entity('Player1')  # level 1
         player.score = player_score[0]
         self.entity_list.append(player)
-        if game_mode in [MENU_OPTION[4]]:
-            player = EntityFactory.get_entity('Player2')  # level Multiplayer
+        if game_mode in [MENU_OPTION[4]]:  # Multiplayer
+            player = EntityFactory.get_entity('Player2')  # Player2 for multiplayer
             player.score = player_score[1]
             self.entity_list.append(player)
-        pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
 
+        # Configuração de eventos
+        self.configure_events()
+
+    def configure_events(self):
+        # Remove todos os eventos para evitar conflitos
+        pygame.time.set_timer(EVENT_ENEMY, 0)
+        pygame.time.set_timer(EVENT_ENEMY3, 0)
+        pygame.time.set_timer(EVENT_ENEMYP2, 0)
+
+        # Configuração de eventos baseada no nível e modo
+        if self.game_mode == MENU_OPTION[4]:  # Multiplayer
+            pygame.time.set_timer(EVENT_ENEMYP2, SPAWN_TIME)
+        elif self.name == 'Level3':  # Apenas Level 3
+            pygame.time.set_timer(EVENT_ENEMY3, SPAWN_TIME)
+        else:  # Qualquer outro nível
+            pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
+
+        # Timer para timeout
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
 
     def run(self, player_score: list[int]):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -52,28 +71,32 @@ class Level:
                     if shoot is not None:
                         self.entity_list.append(shoot)
                 if ent.name == 'Player1':
-                    self.level_text(20, f'Player 1 - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN, (10, 25))
+                    self.level_text(18, f'Player1 - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN, (10, 25))
                 if ent.name == 'Player2':
-                    self.level_text(20, f'Player 2 - Health: {ent.health} | Score: {ent.score}', COLOR_CYAN, (10, 45))
+                    self.level_text(18, f'Player2 - Health: {ent.health} | Score: {ent.score}', COLOR_CYAN, (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == EVENT_ENEMY:
-                    choice = random.choice(('Enemy1', 'Enemy2')) # Level 1 e 2 somente com Enemies 1 e 2
+                # Evento padrão para Level1 e Level2
+                if event.type == EVENT_ENEMY and self.name in ['Level1', 'Level2']:
+                    choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
-                elif event.type == EVENT_ENEMY3:
-                    self.entity_list.append(EntityFactory.get_entity('Enemy3')) # Level 3 somente com Enemy3
-                elif event.type == EVENT_ENEMYP2:
-                    choice = random.choice(('Enemy1', 'Enemy2', 'Enemy3')) # Multiplayer
+                # Evento para Level3
+                elif event.type == EVENT_ENEMY3 and self.name == 'Level3':
+                    self.entity_list.append(EntityFactory.get_entity('Enemy3'))
+                # Evento para Multiplayer
+                elif event.type == EVENT_ENEMYP2 and self.game_mode == MENU_OPTION[4]:
+                    choice = random.choice(('Enemy1', 'Enemy2', 'Enemy3'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+                # Timeout
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
                         for ent in self.entity_list:
-                            if isinstance(ent, Player) and ent.name ==  'Player1':
+                            if isinstance(ent, Player) and ent.name == 'Player1':
                                 player_score[0] = ent.score
-                            if isinstance(ent, Player) and ent.name ==  'Player2':
+                            if isinstance(ent, Player) and ent.name == 'Player2':
                                 player_score[1] = ent.score
                         return True
 
@@ -82,9 +105,8 @@ class Level:
                     if isinstance(ent, Player):
                         found_player = True
 
-                if not  found_player:
+                if not found_player:
                     return False
-
 
             # Printed text
             self.level_text(20, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', COLOR_WHITE, (10, 5))
@@ -94,7 +116,6 @@ class Level:
             # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
-        pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typerwriter", size=text_size)

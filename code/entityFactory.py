@@ -10,24 +10,23 @@ from code.player import Player
 
 class EntityFactory:
 
-    @staticmethod
-    def get_entity(entity_name: str, position=(0,0)):
+    def get_entity(entity_name: str):
         match entity_name:
-            case 'Level1Bg': #  # Level 1
+            case 'Level1Bg':  # Level 1
                 list_bg = []
-                for i in range(7): # Level Bg imagens
-                    list_bg.append(Background(f'Level1Bg{i}',(0,0)))
-                    list_bg.append(Background(f'Level1Bg{i}',(WIN_WIDTH, 0)))
-                return  list_bg
-            case 'Level2Bg':  # Level 2 Bg imagens
+                for i in range(7):  # Level Bg imagens
+                    list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
+                    list_bg.append(Background(f'Level1Bg{i}', (WIN_WIDTH, 0)))
+                return list_bg
+            case 'Level2Bg':  # Level 2
                 list_bg = []
-                for i in range(5): # Level Bg imagens
+                for i in range(5):  # Level Bg imagens
                     list_bg.append(Background(f'Level2Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level2Bg{i}', (WIN_WIDTH, 0)))
                 return list_bg
-            case 'Level3Bg':  #  # Level 3 Bg imagens
+            case 'Level3Bg':  # Level 3
                 list_bg = []
-                for i in range(5): # Level Bg imagens
+                for i in range(5):  # Level Bg imagens
                     list_bg.append(Background(f'Level3Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level3Bg{i}', (WIN_WIDTH, 0)))
                 return list_bg

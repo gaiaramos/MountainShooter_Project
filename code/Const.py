@@ -2,9 +2,9 @@ import pygame
 from pygame.examples.grid import WINDOW_WIDTH
 
 # Cores
-COLOR_ORANGE = (255, 128, 0)
+COLOR_ORANGE = (216, 87, 42)
 COLOR_WHITE = (255, 255, 255)
-COLOR_YELLOW = (255, 255, 0)
+COLOR_YELLOW = (255, 213, 0)
 COLOR_GREEN = (0, 128, 0)
 COLOR_CYAN = (0, 128, 128)
 
@@ -19,9 +19,9 @@ MENU_OPTION = ('NEW GAME',
 
 # Eventos
 EVENT_ENEMY = pygame.USEREVENT + 1
-EVENT_ENEMY3 = pygame.USEREVENT + 1
-EVENT_ENEMYP2 = pygame.USEREVENT + 1
-EVENT_TIMEOUT = pygame.USEREVENT + 2
+EVENT_ENEMY3 = pygame.USEREVENT + 2
+EVENT_ENEMYP2 = pygame.USEREVENT + 3
+EVENT_TIMEOUT = pygame.USEREVENT + 4
 
 ENTITY_SPEED = {
     'Level1Bg0': 0,
@@ -49,8 +49,8 @@ ENTITY_SPEED = {
     'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 2,
-    'Enemy3': 2,
-    'Enemy3Shot': 5,
+    'Enemy3': 1,
+    'Enemy3Shot': 4,
 }
 
 # Times
@@ -167,11 +167,12 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
 # Spawn
-SPAWN_TIME = 4000
+SPAWN_TIME = 1500
 
 # Timeout
 TIMEOUT_STEP = 100  # 100ms
 TIMEOUT_LEVEL = 20000  # 20 segundos
+
 
 # Tamanhos
 WIN_WIDTH = 576

@@ -5,7 +5,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW, WIN_HEIGHT
+from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW, WIN_HEIGHT, COLOR_CYAN
 
 
 class Menu:
@@ -24,8 +24,8 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(70, "Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 65))
             self.menu_text(70, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 115))
-            self.menu_text(16,"Nome: Gaia Latshvia Ramos  RU: 4464349", COLOR_YELLOW, (120, 10))
-            self.menu_text(16,"Nome: João Pedro de Paula Corrêa  RU: 4276750", COLOR_YELLOW, (134, 25))
+            self.menu_text(16,"Nome: Gaia Latshvia Ramos  RU: 4464349", COLOR_CYAN, (120, 10))
+            self.menu_text(16,"Nome: João Pedro de Paula Corrêa  RU: 4276750", COLOR_CYAN, (134, 25))
 
 
             for i in range(len(MENU_OPTION)):
