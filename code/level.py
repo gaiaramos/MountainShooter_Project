@@ -8,7 +8,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
+from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, COLOR_GREEN, COLOR_CYAN
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.entityMediator import EntityMediator
@@ -25,10 +25,8 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))  # level 1
-        if game_mode in [MENU_OPTION[2]]:
-            self.entity_list.append(EntityFactory.get_entity('Player2'))  # level 2
-        # if game_mode in [MENU_OPTION[3]]:
-        # self.entity_list.append(EntityFactory.get_entity('Player3')) # level 3
+        if game_mode in [MENU_OPTION[4]]:
+            self.entity_list.append(EntityFactory.get_entity('Player2'))  # level Multiplayer
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
     def run(self):
@@ -46,6 +44,10 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'Player1':
+                    self.level_text(20, f'Player 1 - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN, (10,25))
+                if ent.name == 'Player2':
+                    self.level_text(20, f'Player 2 - Health: {ent.health} | Score: {ent.score}', COLOR_CYAN, (10,45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -53,6 +55,8 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
+
 
             # Printed text
             self.level_text(20, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', COLOR_WHITE, (10, 5))
