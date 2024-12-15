@@ -22,17 +22,17 @@ class Menu:
         while True:
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(70, "Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
-            self.menu_text(70, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
-            self.menu_text(14,"Nome: Gaia Latshvia Ramos  RU: 4464349", COLOR_YELLOW, (10, 10))
-            self.menu_text(14,"Nome: João Pedro de Paula Corrêa  RU: 4276750", COLOR_YELLOW, (10, 20))
+            self.menu_text(70, "Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 65))
+            self.menu_text(70, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 115))
+            self.menu_text(16,"Nome: Gaia Latshvia Ramos  RU: 4464349", COLOR_YELLOW, (120, 10))
+            self.menu_text(16,"Nome: João Pedro de Paula Corrêa  RU: 4276750", COLOR_YELLOW, (134, 25))
 
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(25, MENU_OPTION[i], COLOR_YELLOW, ((WIN_WIDTH / 2), 165 + 25 * i))
+                    self.menu_text(25, MENU_OPTION[i], COLOR_YELLOW, ((WIN_WIDTH / 2), 160 + 23 * i))
                 else:
-                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 170 + 25 * i))
+                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 165 + 23 * i))
 
             # Check for all events
             for event in pygame.event.get():
