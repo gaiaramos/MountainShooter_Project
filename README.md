@@ -6,7 +6,7 @@ O **Mountain Shooter** é um jogo desenvolvido como parte de uma atividade para 
 
 O jogo possui **3 níveis** e um sistema de **pontuação (Score)**. Além disso, conta com um **Modo Multiplayer**, onde o jogador que obtiver a maior pontuação terá seu nome registrado no **placar de scores**.
 
-Os três níveis disponíveis podem ser acessados diretamente pelo menu, permitindo aos jogadores explorar ou rejogar os níveis. Vale destacar que, ao escolher o modo de jogo por nível, a pontuação não será contabilizada.
+Os três níveis disponíveis podem ser acessados diretamente pelo menu, permitindo aos jogadores explorar ou rejogar os níveis. Ao escolher o modo de jogo por nível, a pontuação não será contabilizada!!
 
 Embora o projeto seja simples, o objetivo principal é proporcionar uma maneira divertida e exploratória de aprender **Python**, além de introduzir os alunos ao processo de desenvolvimento de jogos.
 
