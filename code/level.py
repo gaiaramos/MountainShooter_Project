@@ -31,28 +31,24 @@ class Level:
         player.score = player_score[0]
         self.entity_list.append(player)
         if game_mode in [MENU_OPTION[4]]:  # Multiplayer
-            player = EntityFactory.get_entity('Player2')  # Player2 for multiplayer
+            player = EntityFactory.get_entity('Player2')  # Player2 do multiplayer
             player.score = player_score[1]
             self.entity_list.append(player)
 
         # Configuração de eventos
         self.configure_events()
-
-    def configure_events(self):
-        # Remove todos os eventos para evitar conflitos
+    def configure_events(self):  # Remove eventos p/ definir os enemies
         pygame.time.set_timer(EVENT_ENEMY, 0)
         pygame.time.set_timer(EVENT_ENEMY3, 0)
         pygame.time.set_timer(EVENT_ENEMYP2, 0)
 
-        # Configuração de eventos baseada no nível e modo
+        # Configura os eventos baseado no nível e modo
         if self.game_mode == MENU_OPTION[4]:  # Multiplayer
             pygame.time.set_timer(EVENT_ENEMYP2, SPAWN_TIME)
-        elif self.name == 'Level3':  # Apenas Level 3
+        elif self.name == 'Level3':  # Level 3
             pygame.time.set_timer(EVENT_ENEMY3, SPAWN_TIME)
-        else:  # Qualquer outro nível
+        else:  # Outros Levels
             pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-
-        # Timer para timeout
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
 
     def run(self, player_score: list[int]):
